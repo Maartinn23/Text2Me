@@ -3,6 +3,8 @@ package sintesis.text2me.models;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -38,7 +40,8 @@ public class AppUser {
 	@Column(name = "profile_image", columnDefinition = "LONGBLOB")
 	private byte[] profileImage;
 	private boolean activityState = false;
-
+	
+	@JsonIgnore 
 	@OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
 	private List<Message> sentMessages;
 

@@ -23,7 +23,7 @@
 	        <li class="nav-item">
 	          <a class="nav-link text-dark" href="/contact">Contacte</a>
 			<li class ="nav-item">
-				<a class ="nav-link text-dark" href="/prueba">Prueba</a>
+				<a class ="nav-link text-dark" href="/xats">Xats</a>
 			</li>
 	      </ul>
 	     
@@ -37,9 +37,9 @@
 	          </button>
           </form>
 	      
-	      <ul class="navbar-nav" sec:authorize="!isAuthenticated()">
-	        <li class="nav-item">
-                <a href="/register" class="btn btn-outline-primary me-2">Registra't</a>
+	      <ul sec:authorize="!isAuthenticated()">
+	        <li>
+                <a href="/register">Registra't</a>
             </li>
             <li class="nav-item">
                 <a href="/login" class="btn btn-primary">Inicia la sessió</a>
@@ -53,34 +53,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
