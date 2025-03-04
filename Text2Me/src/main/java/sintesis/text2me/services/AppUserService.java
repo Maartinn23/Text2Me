@@ -1,10 +1,13 @@
 package sintesis.text2me.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import sintesis.text2me.models.AppUser;
@@ -12,25 +15,32 @@ import sintesis.text2me.repositories.AppUserRepository;
 
 @Service
 public class AppUserService implements UserDetailsService {
+	
 	@Autowired
 	private AppUserRepository repo;
+	
+	
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		AppUser appUser = repo.findByEmail(email);
-
-
-		if (appUser != null) {
-			var springUser = User.withUsername(appUser.getEmail())
-			        .password(appUser.getPassword())
-			        .roles(appUser.getRole())
-			        .build();
-
-			return springUser;
+		
+		Optional<AppUser> user = repo.findByEmail(email);
+		
+		System.out.println(user);
+		
+		if(user.isPresent()) {
+			
+			var userInfo = user.get();
+			return User.builder()
+					.username(userInfo.getEmail())
+					.password(userInfo.getPassword())
+					.build();
+			
+		}else {
+			System.out.println("Error usuario inexistente");
+			throw new UsernameNotFoundException(email);
 		}
-
-
-		return null;
+		
 	}
 
 }

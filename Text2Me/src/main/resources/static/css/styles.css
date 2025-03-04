@@ -1,0 +1,90 @@
+body {
+  
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to right, #12E0D5, #12AAE0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    background: #28E0CA;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 100%;
+}
+
+.login-form h2 {
+    margin-bottom: 2rem;
+    color: #444;
+    text-align: center;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #666;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #ff7e5f;
+    outline: none;
+}
+
+.login-button {
+    width: 100%;
+    padding: 1rem;
+    background: #47E69B;
+    border: none;
+    border-radius: 8px;
+    color: black;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+}
+.register-button {
+    width: 100%;
+    padding: 1rem;
+    background: #47E69B;
+    border: none;
+    border-radius: 8px;
+    color: black;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+}
+.return-button {
+    width: 100%;
+    padding: 1rem;
+    background: #E00101;
+    border: none;
+    border-radius: 8px;
+    color: black;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+}
+
+

@@ -21,7 +21,17 @@ public class MainController {
 	public String xats() {
 		return "xats";
 	}
-
+	
+	@GetMapping("/register")
+	public String register() {
+		return "register";
+		
+	}
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+		
+	}
 
 
 

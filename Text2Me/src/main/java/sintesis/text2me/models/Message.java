@@ -13,7 +13,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "missatges")
+@Table(name = "messages")
 public class Message {
 
     @Id
