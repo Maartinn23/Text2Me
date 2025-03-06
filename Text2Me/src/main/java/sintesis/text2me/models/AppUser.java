@@ -1,5 +1,6 @@
 package sintesis.text2me.models;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class AppUser {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
 	private String firstName;
 	private String lastName;
@@ -34,7 +35,7 @@ public class AppUser {
 	private String address;
 	private String password;
 	private String role;
-	private Date createdAt;
+	private LocalDateTime createdAt = LocalDateTime.now();
 
 	@Lob
 	@Column(name = "profile_image", columnDefinition = "LONGBLOB")
@@ -52,7 +53,7 @@ public class AppUser {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -112,11 +113,11 @@ public class AppUser {
 		this.role = role;
 	}
 
-	public Date getCreatedAt() {
+	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(Date createdAt) {
+	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
 
@@ -152,8 +153,8 @@ public class AppUser {
 		this.chats = chats;
 	}
 
-	public AppUser(int id, String firstName, String lastName, String email, String phone, String address,
-			String password, String role, Date createdAt, byte[] profileImage, boolean activityState,
+	public AppUser(Integer id, String firstName, String lastName, String email, String phone, String address,
+			String password, String role, LocalDateTime createdAt, byte[] profileImage, boolean activityState,
 			List<Message> sentMessages, List<Chat> chats) {
 		super();
 		this.id = id;

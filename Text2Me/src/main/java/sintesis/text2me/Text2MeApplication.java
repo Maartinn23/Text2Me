@@ -4,6 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
+//TODO: Añadir opciones por defecto para profile_image y createdAt (para registrar fecha de creacion de cuenta)
+
+
 @SpringBootApplication
 public class Text2MeApplication
 {

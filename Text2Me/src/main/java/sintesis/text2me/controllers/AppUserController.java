@@ -25,13 +25,13 @@ public class AppUserController {
     @Autowired
     private AppUserRepository repo;
 
-   /* @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppUser> getUserById(@PathVariable long id) {
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AppUser> getUserById(@PathVariable int id) {
         return repo.findById(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
-    */
+    
 }
 
 

@@ -24,6 +24,14 @@ public class RegisterController {
 	@PostMapping(value = "/register", consumes = "application/json")
 	public AppUser createUser(@RequestBody AppUser newUser) {
 		newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
+		
+		if (newUser.getRole() == null || newUser.getRole().isEmpty()) {
+			newUser.setRole("user");
+			
+		}
+		
+		
+		
 		return repo.save(newUser);
 		
 		
