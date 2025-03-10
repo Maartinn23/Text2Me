@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import sintesis.text2me.models.AppUser;
 import sintesis.text2me.repositories.AppUserRepository;
+import sintesis.text2me.services.AppUserService;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,7 @@ public class AppUserController {
 
     @Autowired
     private AppUserRepository repo;
+    
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AppUser> getUserById(@PathVariable int id) {
@@ -31,6 +33,7 @@ public class AppUserController {
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
+   
     
 }
 

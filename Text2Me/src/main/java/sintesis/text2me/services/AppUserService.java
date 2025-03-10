@@ -15,32 +15,27 @@ import sintesis.text2me.repositories.AppUserRepository;
 
 @Service
 public class AppUserService implements UserDetailsService {
-	
+
 	@Autowired
 	private AppUserRepository repo;
-	
-	
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		
+
 		Optional<AppUser> user = repo.findByEmail(email);
-		
+
 		System.out.println(user);
-		
-		if(user.isPresent()) {
-			
+
+		if (user.isPresent()) {
+
 			var userInfo = user.get();
-			return User.builder()
-					.username(userInfo.getEmail())
-					.password(userInfo.getPassword())
-					.build();
-			
-		}else {
-			System.out.println("Error usuario inexistente");
+			return User.builder().username(userInfo.getEmail()).password(userInfo.getPassword()).build();
+
+		} else {
+			System.out.println("Error! aquest usuari no existeix al sistema... ");
 			throw new UsernameNotFoundException(email);
 		}
-		
+
 	}
 
 }

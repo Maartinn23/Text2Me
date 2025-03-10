@@ -46,11 +46,12 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
         		.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests( auth -> auth	                    
+                .authorizeHttpRequests( auth -> auth
                 		.requestMatchers("/").permitAll()
+	                    .requestMatchers("/xats").authenticated()
                 		.requestMatchers("/contact").permitAll()
-	                    .requestMatchers("/register", "/api/**", "/{id}").permitAll()
-	                    .requestMatchers("/login").permitAll()
+                		.requestMatchers("/register").permitAll()
+	                    .requestMatchers("/login","/api/**", "/xats/**","/{id}").permitAll()
 	                    .requestMatchers("/logout").permitAll()
 	                    .requestMatchers("css/**").permitAll()
 	                    .requestMatchers("/js/**").permitAll()
@@ -69,32 +70,6 @@ public class SecurityConfig {
 
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

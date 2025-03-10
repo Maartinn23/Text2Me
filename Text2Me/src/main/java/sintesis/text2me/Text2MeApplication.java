@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
-//TODO: Arreglar logica de login para xats, profundizar mas en el websocket, añadir backend del websocket con la bbdd mediante json...
+//TODO: profundizar mas en el websocket, añadir backend del websocket con la bbdd mediante json, Arreglar api rest en chatController para recuperar info de logueo actual...
 
 
 @SpringBootApplication
