@@ -24,8 +24,6 @@ public class AppUserService implements UserDetailsService {
 
 		Optional<AppUser> user = repo.findByEmail(email);
 
-		System.out.println(user);
-
 		if (user.isPresent()) {
 
 			var userInfo = user.get();
@@ -37,5 +35,25 @@ public class AppUserService implements UserDetailsService {
 		}
 
 	}
+	
+	public String getUserLogged(String email) throws UsernameNotFoundException  {
+		
+		
+		Optional<AppUser> user = repo.findByEmail(email);
+		
+		if (user.isPresent()) {
+			
+			var userInfo = user.get();
+			
+			return userInfo.getFirstName();
+		}
+		else {
+			System.out.println("Error! aquest usuari no existeix al sistema... ");
+			throw new UsernameNotFoundException(email);
+		}
+		
+	}
+	
+	
 
 }

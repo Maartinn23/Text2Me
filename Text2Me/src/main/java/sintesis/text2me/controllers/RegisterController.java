@@ -20,6 +20,7 @@ public class RegisterController {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
 
 	@PostMapping(value = "/register", consumes = "application/json")
 	public AppUser createUser(@RequestBody AppUser newUser) {
@@ -27,15 +28,13 @@ public class RegisterController {
 		
 		if (newUser.getRole() == null || newUser.getRole().isEmpty()) {
 			newUser.setRole("user");
-			
 		}
-		
-		
-		
+	
 		return repo.save(newUser);
 		
 		
 	}
+	
 	
 	
 }

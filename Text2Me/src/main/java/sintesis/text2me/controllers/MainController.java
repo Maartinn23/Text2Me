@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class MainController {
 
-	@GetMapping({"", "/"})
+	@GetMapping({ "", "/" })
 	public String home() {
 		return "index";
 	}
@@ -16,56 +16,17 @@ public class MainController {
 	public String contact() {
 		return "contact";
 	}
-	
-	@GetMapping("/xats")
-	public String xats() {
-		return "xats";
-	}
-	
+
 	@GetMapping("/register")
 	public String register() {
 		return "register";
-		
+
 	}
+
 	@GetMapping("/login")
 	public String login() {
 		return "login";
-		
+
 	}
 
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

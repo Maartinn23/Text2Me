@@ -1,47 +1,41 @@
-/*package sintesis.text2me.controllers;
-
-import java.util.Optional;
+package sintesis.text2me.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import sintesis.text2me.models.AppUser;
+import org.springframework.ui.Model;
+import jakarta.servlet.http.HttpServletRequest;
 import sintesis.text2me.repositories.AppUserRepository;
+import sintesis.text2me.services.AppUserService;
 
-@RestController
+@Controller
 public class ChatController {
 	
 	
-	@Autowired 
-	AppUserRepository repo;
 	
-	//@Bean
-	//UserDetailsService
+	@Autowired
+	AppUserRepository repo;
+
+	@Autowired
+	AppUserService appUserService;
 	
 	@GetMapping("/xats")
-	public String loadUserById(@PathVariable int id) throws UsernameNotFoundException {
-		Optional<AppUser> user = repo.findById(id);
-		
-		System.out.println(user);
-		
-		if (user.isPresent()) {
-			var userInfo = user.get();
-			System.out.println(userInfo.getFirstName());
-			return userInfo.getFirstName();
-		}
-		else {
-			throw new UsernameNotFoundException("Error! aquest usuari no existeix al sistema...");
-		}
-		
-	
-		
+	public String xats(Model model, HttpServletRequest request) {
+
+		UserDetails loggedUser = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		String prueba = appUserService.getUserLogged(loggedUser.getUsername());
+
+		model.addAttribute("user", loggedUser);
+
+		return "xats";
+
 	}
-	
-	
+
+
 }
-*/

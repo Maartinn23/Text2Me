@@ -41,17 +41,16 @@ public class SecurityConfig {
 		return provider;
 	}
 	
-	
 	@Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-        		.csrf(AbstractHttpConfigurer::disable)
+		return http
+				.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests( auth -> auth
                 		.requestMatchers("/").permitAll()
 	                    .requestMatchers("/xats").authenticated()
                 		.requestMatchers("/contact").permitAll()
                 		.requestMatchers("/register").permitAll()
-	                    .requestMatchers("/login","/api/**", "/xats/**","/{id}").permitAll()
+	                    .requestMatchers("/login","/api/**", "/xats/**").permitAll()
 	                    .requestMatchers("/logout").permitAll()
 	                    .requestMatchers("css/**").permitAll()
 	                    .requestMatchers("/js/**").permitAll()

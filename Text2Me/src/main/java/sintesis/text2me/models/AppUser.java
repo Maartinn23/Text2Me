@@ -1,5 +1,7 @@
 package sintesis.text2me.models;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
@@ -36,10 +38,12 @@ public class AppUser {
 	private String password;
 	private String role;
 	private LocalDateTime createdAt = LocalDateTime.now();
-
+	
+	
 	@Lob
 	@Column(name = "profile_image", columnDefinition = "LONGBLOB")
 	private byte[] profileImage;
+	
 	private boolean activityState = false;
 	
 	@JsonIgnore 
@@ -154,7 +158,7 @@ public class AppUser {
 	}
 
 	public AppUser(Integer id, String firstName, String lastName, String email, String phone, String address,
-			String password, String role, LocalDateTime createdAt, byte[] profileImage, boolean activityState,
+			String password, String role, LocalDateTime createdAt, boolean activityState,
 			List<Message> sentMessages, List<Chat> chats) {
 		super();
 		this.id = id;
@@ -166,14 +170,20 @@ public class AppUser {
 		this.password = password;
 		this.role = role;
 		this.createdAt = createdAt;
-		this.profileImage = profileImage;
 		this.activityState = activityState;
 		this.sentMessages = sentMessages;
 		this.chats = chats;
+		
+
 	}
 
 	public AppUser() {
-
+		try {
+			InputStream is = getClass().getResourceAsStream("/static/images/avatar.png");
+			this.profileImage = is.readAllBytes();
+		} catch (IOException e) {
+			this.profileImage = new byte[0];
+		}
 	}
 
 }
