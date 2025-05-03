@@ -17,12 +17,14 @@ import sintesis.text2me.repositories.AppUserRepository;
 public class AppUserService implements UserDetailsService {
 
 	@Autowired
-	private AppUserRepository repo;
+	private AppUserRepository appUserRepository;
+	
+	// Métode implementat que carrega l'usuari de la bbdd en base a un email proporcionat.
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-		Optional<AppUser> user = repo.findByEmail(email);
+		Optional<AppUser> user = appUserRepository.findByEmail(email);
 
 		if (user.isPresent()) {
 
@@ -36,10 +38,12 @@ public class AppUserService implements UserDetailsService {
 
 	}
 	
-	public String getUserLogged(String email) throws UsernameNotFoundException  {
+	// Amb aquest métode obtenim dades més concretes de l'usuari en base al seu email.
+	
+	public String getUserLogged(String email) throws UsernameNotFoundException  { 
 		
 		
-		Optional<AppUser> user = repo.findByEmail(email);
+		Optional<AppUser> user = appUserRepository.findByEmail(email);
 		
 		if (user.isPresent()) {
 			

@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "messages")
-public class Message {
+public class Message { // Classe que defineix com estructurem els missatges a l'aplicació.
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

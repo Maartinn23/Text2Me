@@ -85,13 +85,13 @@
         })
         .then(response => response.json())
         .then(result => {
-          console.log("Usuario registrado:", result);
+          console.log("Usuari registrat:", result);
         })
         .catch(error => {
-          console.error("Error en el registro:", error);
+          console.error("Error al registrar:", error);
         });
       } else {
-        alert("Las contraseñas no coinciden");
+        alert("Els passwords han de coincidir!");
       }
     });
   </script>

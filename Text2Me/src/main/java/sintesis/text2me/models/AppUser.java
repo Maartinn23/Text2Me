@@ -179,7 +179,7 @@ public class AppUser {
 
 	public AppUser() {
 		try {
-			InputStream is = getClass().getResourceAsStream("/static/images/avatar.png");
+			InputStream is = getClass().getResourceAsStream("/static/images/avatar.png"); // Imatge per defecte en registrar-se
 			this.profileImage = is.readAllBytes();
 		} catch (IOException e) {
 			this.profileImage = new byte[0];

@@ -24,10 +24,10 @@ public class RegisterController {
 
 	@PostMapping(value = "/register", consumes = "application/json")
 	public AppUser createUser(@RequestBody AppUser newUser) {
-		newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
+		newUser.setPassword(passwordEncoder.encode(newUser.getPassword())); // Xifratge del password
 		
 		if (newUser.getRole() == null || newUser.getRole().isEmpty()) {
-			newUser.setRole("user");
+			newUser.setRole("user"); // Rol per defecte
 		}
 	
 		return repo.save(newUser);
