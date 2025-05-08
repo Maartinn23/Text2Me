@@ -15,7 +15,7 @@ import javax.crypto.spec.IvParameterSpec;
 public class CryptoService {
 
 	public SecretKey generateAesKey() throws NoSuchAlgorithmException {
-		KeyGenerator kG = kG.getInstance("AES");
+		KeyGenerator kG = KeyGenerator.getInstance("AES");
 		kG.init(256);
 		return kG.generateKey();
 	}

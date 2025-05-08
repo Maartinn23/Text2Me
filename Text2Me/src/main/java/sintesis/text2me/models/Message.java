@@ -2,6 +2,8 @@ package sintesis.text2me.models;
 
 import java.time.LocalDateTime;
 
+import javax.crypto.SecretKey;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,6 +37,12 @@ public class Message { // Classe que defineix com estructurem els missatges a l'
 
     @Column(nullable = false)
     private LocalDateTime sendingDate = LocalDateTime.now();
+    
+    @Column(length = 512)
+    private String iv;
+    
+    @Column(length = 512)
+    private String sK;
 
 	public int getId() {
 		return id;
@@ -83,8 +91,25 @@ public class Message { // Classe que defineix com estructurem els missatges a l'
 	public void setSendingDate(LocalDateTime sendingDate) {
 		this.sendingDate = sendingDate;
 	}
+	
+	public String getIv() {
+		return iv;
+	}
 
-	public Message(int id, Chat chat, AppUser sender, String content, boolean readingState, LocalDateTime sendingDate) {
+	public void setIv(String iv) {
+		this.iv = iv;
+	}
+
+	public String getSk() {
+		return sK;
+	}
+
+	public void setSk(String sK) {
+		this.sK = sK;
+	}
+
+    public Message(int id, Chat chat, AppUser sender, String content, boolean readingState, LocalDateTime sendingDate,
+			String iv, String sK) {
 		super();
 		this.id = id;
 		this.chat = chat;
@@ -92,9 +117,11 @@ public class Message { // Classe que defineix com estructurem els missatges a l'
 		this.content = content;
 		this.readingState = readingState;
 		this.sendingDate = sendingDate;
+		this.iv = iv;
+		this.sK = sK;
 	}
 
-    public Message(){
+	public Message(){
     	
     }
     

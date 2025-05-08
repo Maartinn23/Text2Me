@@ -28,8 +28,9 @@ import sintesis.text2me.repositories.ChatRepository;
 import sintesis.text2me.repositories.MessageRepository;
 import sintesis.text2me.services.AppUserService;
 import sintesis.text2me.services.AuthenticatorService;
+import sintesis.text2me.services.CryptoService;
+import sintesis.text2me.services.MessageService;
 
-// TODO: Acabar con la persistencia de mensajes y chats...
 
 
 @Component
@@ -39,6 +40,12 @@ public class MyWebSocketHandler extends TextWebSocketHandler{
 	
 	@Autowired
 	AppUserService appUserService;
+	
+	@Autowired
+	CryptoService cryptoService;
+	
+	@Autowired
+	MessageService messageService;
 	
 	@Autowired
 	AppUserRepository appUserRepository;
@@ -126,9 +133,9 @@ public class MyWebSocketHandler extends TextWebSocketHandler{
 		
 		Message newMessage = new Message();
 		newMessage.setChat(chat);
-		newMessage.setSender(sender);   
+		newMessage.setSender(sender);
 		newMessage.setContent(content);
-		messageRepository.save(newMessage);
+		messageService.saveMessageEncrypted(newMessage);
 		
 	    String responseJson = String.format("{\"from\": \"%s\", \"to\": \"%s\", \"message\": \"%s\"}", senderEmail, receiverEmail, content); // Json de resposta.
 		
