@@ -69,57 +69,43 @@ public class MyWebSocketHandler extends TextWebSocketHandler{
 		System.out.println("Nueva connexion al sistema! " + session.getId());
 	}
 	
+	/*
+	 * Amb Aquest métode definim el chat detectant la sessió actual (usuari loguejat que envia o rep missatges) 
+	 * i en base a si envia missatges, fa les peticions get o post (llegir missatges o enviar missatges) actuant sobre la 
+	 * bbdd i el front-end mitjançant objectes tipus JSON. També gestiona la creació dels chats entre els usuaris i
+	 * els persisteix.
+	 */
+	
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		
-		
-		
-		
-		Object principal = session.getPrincipal(); // Obtenim dades de la sessió actual (usuari actual)
+			
+		Object principal = session.getPrincipal(); 
 		
 		String senderEmail = "desconegut@example.com";
 		String senderName = "desconegut";
 		
-		
-		
-		// Aqui definim si l'objecte de la sessió actual té relació amb la informació de l'usuari, y establim les seves dades.
 		 
 		if(!(principal instanceof Authentication auth) || 
 			!(auth.getPrincipal() instanceof UserDetails userDetails)) {
-				return; // si no hi ha relació, no retornem res.
+				return; 
 					
 		}
 		
-		senderEmail = userDetails.getUsername(); // Obtenim el correu del remitent en base a la sessió actual (usuari loguejat)
-		senderName = appUserService.getUserLogged(senderEmail); // Obtenim el nom del remitent en base al correu obtingut adalt.
-		final AppUser sender = appUserRepository.findByEmail(senderEmail).orElseThrow(); // Definim l'objecte de l'usuari remitent per posteriorment persitir dades sota el seu nom.
-																						// Si no troba res, informem de l'error (try-catch simplificat)
+		senderEmail = userDetails.getUsername(); 
+		senderName = appUserService.getUserLogged(senderEmail); 
+		final AppUser sender = appUserRepository.findByEmail(senderEmail).orElseThrow(); 
+																						
 		
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode  json = mapper.readTree(message.getPayload());
 		
-		String content = json.get("message").asText(); // del Json amb el missatge y el receptor, agafem el missatge.
-		String receiverEmail = json.get("to").asText(); // del Json amb el missatge y el receptor, agafem el receptor.
-		
-		// Comprovem que l'email del receptor es válid i si no informem de l'error (try-catch simplificat).
-		
-		Optional<AppUser> optionalReceiver = appUserRepository.findByEmail(receiverEmail);
-		
-		System.out.println("Receptor: " + receiverEmail);
+		String content = json.get("message").asText();
+		String receiverEmail = json.get("to").asText(); 
 		
 		
-		
-		/*
-		
-		if(optionalReceiver.isEmpty()) {
-			System.out.println("Error, el receptor es null o incorrecte!!");
-			return;
-		} */
+		Optional<AppUser> optionalReceiver = appUserRepository.findByEmail(receiverEmail);		
 		
 		final AppUser receiver = optionalReceiver.get(); 
-		
-		
-		
 		
 		Optional<Chat> optionalChat = chatRepository.findByChatParticipantsContainsAndChatParticipantsContains(sender, receiver); // Creem el chat entre el remitent i el receptor.
 		
@@ -138,17 +124,13 @@ public class MyWebSocketHandler extends TextWebSocketHandler{
 		messageService.saveMessageEncrypted(newMessage);
 		
 	    String responseJson = String.format("{\"from\": \"%s\", \"to\": \"%s\", \"message\": \"%s\"}", senderEmail, receiverEmail, content); // Json de resposta.
-		
-	    /*Aqui definim si l'objecte gestor dels missatges té relació amb la informació de l'usuari, 
-	     * y enviem els missatges entre emisor y receptor de manera exclusiva entre tots dos.
-	    */
 
 		for(WebSocketSession ws: sessions) {
 			if(ws.getPrincipal() instanceof Authentication authWebsocket) {
 				if(authWebsocket.getPrincipal() instanceof UserDetails userDetailsWebSocket) {
 					String userEmail = userDetailsWebSocket.getUsername(); 
 					if(userEmail.equals(senderEmail) || userEmail.equals(receiverEmail)) {
-						ws.sendMessage(new TextMessage(responseJson));	// enviem el missatge (Json de resposta)
+						ws.sendMessage(new TextMessage(responseJson));	
 					}
 					
 				}

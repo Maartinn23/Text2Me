@@ -1,0 +1,64 @@
+html, body {
+	height: 100%;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	background: linear-gradient(to right, #12E0D5, #12AAE0);
+	font-family: 'Inter', sans-serif;
+}
+
+.main-content {
+	flex: 1;
+	padding: 20px; 
+}
+
+li {
+	list-style: none;
+}
+
+#chatsHeader {
+	text-align: right;	
+}
+
+#searchUsersInput {
+	background-color: #FAFAD2;
+	border: none;
+	padding: 20px 40px;
+	border-radius: 20px;
+	cursor: text;
+	font-size: 14px;
+}
+
+.usuari-item{
+	font-weight: bold;
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    border-bottom: 1px solid #eee;
+    gap: 10px;
+}
+
+.obrirChat-boto{
+	background-color: #FAFAD2;
+	border: none;
+	padding: 8px 16px;
+	border-radius: 20px;
+	cursor: pointer;
+}
+
+
+#searchUsersButton {
+	background-color: #FAFAD2;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 20px;
+	cursor: pointer;
+}
+
+footer {
+	text-align: center;
+	padding: 12px;
+	font-size: 1.1em;
+	background-color: rgba(255, 255, 255, 0.2);
+}

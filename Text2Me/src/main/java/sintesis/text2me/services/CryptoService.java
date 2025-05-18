@@ -9,7 +9,7 @@ import java.util.Base64;
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
 
-// Clase que xifra / desxifra els missatges
+// Classe que xifra / desxifra els missatges
 
 @Service
 public class CryptoService {

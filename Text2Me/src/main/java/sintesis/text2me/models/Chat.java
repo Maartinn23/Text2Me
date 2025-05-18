@@ -4,7 +4,9 @@ import java.util.List;
 
 import jakarta.persistence.*;
 
-
+/*
+ * Aquesta classe defineix el que entenem com a missatge i la seva estrucura a bbdd.
+ */
 
 @Entity
 @Table(name = "chats")

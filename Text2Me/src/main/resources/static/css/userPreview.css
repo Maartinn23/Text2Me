@@ -1,0 +1,33 @@
+html, body {
+	height: 100%;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	background: linear-gradient(to right, #12E0D5, #12AAE0);
+	font-family: 'Inter', sans-serif;
+}
+
+.main-content {
+	flex: 1;
+	padding: 20px; 
+}
+
+
+input[type="text"] {
+	 width: 100%;
+	 max-width: 500px; 
+	 padding: 10px;
+	 margin-top: 5px;
+	 border: 1px solid #ccc;
+	 border-radius: 5px;
+	 box-sizing: border-box;
+}
+
+
+footer {
+	text-align: center;
+	padding: 12px;
+	font-size: 1.1em;
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
