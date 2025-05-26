@@ -11,10 +11,10 @@ body {
 }
 
 nav {
-  background-color: white;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  background-color: rgba(255, 255, 255, 0.8);
   padding: 1rem 2rem;
 }
+
 
 .logo {
   font-size: 1.4rem;
@@ -32,9 +32,10 @@ nav {
 
 nav a {
   text-decoration: none;
-  color: #12AAE0;
   margin: 0 1rem;
   font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.8);
+
 }
 
 nav a:hover {
@@ -51,6 +52,78 @@ nav li {
   margin: 0;
 }
 
+.benvinguda {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  flex-wrap: wrap;
+}
+
+.col-esquerra,
+.col-dreta {
+  flex: 1 1 300px;
+  margin: 1rem;
+}
+
+.col-esquerra .logo {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.col-dreta h2 {
+  margin-bottom: 1rem;
+
+}
+
+.col-dreta ul {
+  list-style: disc inside;
+  padding-left: 1rem;
+}
+
+.avantatges {
+  background-color: #FAFAD2; 
+  border: 2px solid #F0FFF0;
+  margin: 2rem;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.avantatges h2 {
+  margin-bottom: 1rem;
+}
+
+.avantatges ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.avantatges li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.comenca {
+  text-align: center;
+  margin: 3rem 0;
+}
+
+.btn-inicia {
+  display: inline-block;
+  background-color: #12AAE0;
+  color: white;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-inicia:hover {
+  background-color: #0d86b6;
+}
+
 @media (max-width: 768px) {
   .main-content {
     flex-direction: column;
@@ -61,5 +134,16 @@ nav li {
     flex-direction: column;
     gap: 0.5rem;
     margin-top: 1rem;
+  }
+
+  .benvinguda {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .col-esquerra,
+  .col-dreta {
+    width: 100%;
+    text-align: center;
   }
 }
